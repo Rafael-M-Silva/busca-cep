@@ -8,21 +8,22 @@ function App() {
   const [city, setCity] = useState()
   const [state, setState] = useState()
 
-  let cepWanted = ''
+  const [input, setInput] = useState()
+  
+
+
   const handleChange = (event) => {
-    cepWanted = event.target.value;
+    setInput(event.target.value)
   }
   
   function cepSet() {
     
-    const url = `https://viacep.com.br/ws/${cepWanted}/json/`;
-    console.log(url);
-
+    const url = `https://viacep.com.br/ws/${input}/json/`;
+    
     fetch(url)
     .then((response)=> response.json()) /* está pegando a requisição e tranformando para json */
     .then((data) => {
-      console.log(data);  /* recebe os dados já convertidos em JSON e os imprime no console. */
-    
+
       const cep = data.cep
       const street = data.logradouro
       const city = data.localidade
@@ -32,12 +33,22 @@ function App() {
       setStreet(street)
       setCity(city)
       setState(state)
+
     })
     .catch((error) => { // Adicionei um catch para tratar erros
       console.error(error);
+
+      setCep()
+      setStreet()
+      setCity()
+      setState()
+      
     });
+      
   }
 
+      
+  
   return (
     <div className={Styles.App}>
 
@@ -45,17 +56,17 @@ function App() {
         <h1>Busca CEP</h1>
           <div>
             <div className={Styles.content}>
-            <input onChange={handleChange} className={Styles.cep} type="text" placeholder="CEP" maxLength={8} />
+            <input onChange={handleChange} className={Styles.cep} type="text" placeholder="CEP" maxLength={8} value={input} />
             <button onClick={cepSet} className={Styles.search}><FaSearch/></button>
             </div>
           </div>
       </header>
     
     <div className={Styles.box}>
-      <h1>{cep || "00000-000"}</h1>
-      <p>{street || "Rua"}</p>
-      <p>{city || "Cidade"}</p>
-      <p>{state || "Estado"}</p>
+      <h1>{cep}</h1>
+      <p>{street}</p>
+      <p>{city}</p>
+      <p>{state}</p>
     </div>
 
     </div>
