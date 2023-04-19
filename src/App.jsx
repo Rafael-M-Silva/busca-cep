@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import Styles from './app.module.css'
+import Styles from './App.module.css'
 
 function App() {
   const [cep, setCep] = useState()
