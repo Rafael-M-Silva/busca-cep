@@ -1,7 +1,7 @@
 <h1 align="center"> Busca CEP </h1>
 
 <p align="center">
-Desenvolvido para você fazer busca de CEP.
+Projeto 02 React - faculdade flamingo.
 </p>
 
 <p align="center">
